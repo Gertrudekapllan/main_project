@@ -1,0 +1,23 @@
+
+<h1>PASSWORD GENERATION</h1>
+<form action="password">
+    <select name="length">
+        <option value="6">6</option>
+        <option value="8">8</option>
+        <option value="10">10</option>
+        <option value="12" selected="selected">12</option>
+        <option value="14">14</option>
+        <option value="16">16</option>
+        <option value="18">18</option>
+        <option value="20">20</option>
+    </select>
+    <br>
+    <input type="checkbox" name="uppercase"> <<<  UPPERCASE
+    <br>
+    <input type="checkbox" name="numbers"> <<<  NUMBERS
+    <br>
+    <input type="checkbox" name="special"> <<<  SPECIAL CHARACTERS
+    <br>
+    <input type="submit" value="GENERATOR">
+</form>
+{{ password }}
