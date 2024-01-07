@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import random
+from django.shortcuts import render
+from .forms import UserInputForm
+from django.core.mail import send_mail
 
 
-# Create your views here.
 def home(request):
     return render(request, 'password_generation/home.html')
 
@@ -24,3 +26,35 @@ def password(request):
 
         print(the_password)
     return render(request, 'password_generation/password.html', {'password': the_password})
+
+
+def generate_password(request):
+    if request.method == 'POST':
+        form = UserInputForm(request.POST)
+        if form.is_valid():
+            # Обработка введенных данных
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            # Далее - генерация пароля и сохранение в базе данных
+            generated_password = "ваш_сгенерированный_пароль"
+
+            # Сохранение в базе данных
+            UserGeneratedPassword.objects.create(name=name, email=email, generated_password=generated_password)
+
+            # Отправка сгенерированного пароля на email
+            send_mail(
+                'Ваш сгенерированный пароль',
+                f'Ваш пароль: {generated_password}',
+                'от_какого_адреса',
+                [email],
+                fail_silently=False,
+            )
+
+            # Увеличение счетчика генераций в базе данных
+            stats = PasswordGenerationStats.objects.first()
+            stats.generation_count += 1
+            stats.save()
+    else:
+        form = UserInputForm()
+
+    return render(request, 'generate_password.html', {'form': form})
