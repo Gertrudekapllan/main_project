@@ -4,6 +4,7 @@ import random
 from django.shortcuts import render
 from .forms import UserInputForm
 from django.core.mail import send_mail
+from .models import UserGeneratedPassword
 
 
 def home(request):
@@ -11,6 +12,10 @@ def home(request):
 
 
 def password(request):
+    if request.GET.get('name'):
+        name = request.GET.get('name')
+    if request.GET.get('email'):
+        email = request.GET.get('email')
     characters = list('abcdefjhijklmnopqrstuvwxyz')
     if request.GET.get('uppercase'):
         characters.extend(list('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
@@ -23,9 +28,15 @@ def password(request):
     the_password = ''
     for x in range(length):
         the_password += random.choice(characters)
-
         print(the_password)
+
+    save_generated_password(name, email, the_password)
     return render(request, 'password_generation/password.html', {'password': the_password})
+
+
+def save_generated_password(name, email, the_password):
+    print(name, email, the_password)
+    UserGeneratedPassword.objects.create(name=name, email=email, generated_password=the_password)
 
 
 def generate_password(request):
