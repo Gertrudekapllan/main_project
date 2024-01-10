@@ -2,7 +2,7 @@ body {
     background-color: #dddddd;
 }
 body a {
-    color: darkslategray;
+    color: red;
 }
 .page {
     width: 800px;
@@ -15,4 +15,11 @@ footer {
 }
 footer a {
     color: brown;
+}
+
+.help-text{
+    color: red;
+}
+.password{
+    color: #6666;
 }

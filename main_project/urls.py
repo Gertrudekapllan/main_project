@@ -21,7 +21,6 @@ from password_generation import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('password/', views.password, name='password'),
-    path('generate_password/', views.generate_password, name='generate_password'),
+    path('password/', views.password),
 
 ]

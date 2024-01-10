@@ -21,7 +21,6 @@
             <option value="8">8</option>
             <option value="10" selected="selected">10</option>
             <option value="12">12</option>
-            password_generation
             <option value="14">14</option>
             <option value="16">16</option>
             <option value="18">18</option>
@@ -36,7 +35,9 @@
         <br>
         <input type="submit" value="GENERATOR">
     </form>
-    {{ password }}
+    <div class="help-text">
+        {{ error }}
+    </div>
 </div>
 <footer>
     <p style="color: green; font-weight: bold;">Author: Hege Refsnes</p>
