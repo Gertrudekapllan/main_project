@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-xzobr*t&%_bu8e-7y$!&nk^ztakdra7)hrk62t(@&j5ldd6l*@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'password_generation'
+    'password_generation',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'password_generation', 'static')]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
